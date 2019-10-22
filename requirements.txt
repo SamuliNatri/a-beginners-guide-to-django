@@ -8,7 +8,7 @@ django-imagekit==4.0.2
 idna==2.8
 oauthlib==3.1.0
 pilkit==2.0
-Pillow==6.1.0
+Pillow==6.2.0
 python3-openid==3.1.0
 pytz==2019.2
 requests==2.22.0
