@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Pizza{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <form method="post" action=".">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <input class="btn btn-danger" type="submit" value="Confirm">
+    </form>
+</div>
+
+{% endblock %}

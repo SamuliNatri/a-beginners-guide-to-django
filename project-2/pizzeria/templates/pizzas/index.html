@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Pizzas{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <h1>Pizzas</h1>
+
+    <form class="my-3" action=".">
+        <div class="form-group">
+            <input {% if request.GET.q %}value="{{ request.GET.q }}" {% endif %} name="q" type="text"
+                class="form-control" id="search" aria-describedby="searchHelp">
+            <small id="searchHelp" class="form-text text-muted">Search with pizza name.</small>
+        </div>
+        <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+        <a href="{% url 'pizzas:index' %}" type="submit" class="btn btn-sm btn-light">Reset</a>
+    </form>
+
+    <ul class="list-group">
+        {% for pizza in pizzas %}
+        <li class="list-group-item">
+            {{ pizza.name }}
+            <span class="text-muted small">
+                {% for topping in pizza.toppings.all %}
+                {{ topping }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}</span>
+            <span class="badge badge-light badge-pill">${{ pizza.price }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% if page_obj.paginator.num_pages > 1 %}
+        {% include '_pagination.html' with page_obj=page_obj %}
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Todo{% endblock %}</title>
+</head>
+<body>
+    <ul>
+        {% if user.is_authenticated %}
+        <li>
+            Logged-in as <strong>{{ user }}</strong> 
+            (<a href="{% url 'admin:logout' %}">Logout</a>)
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'admin:login' %}">Login</a>
+        </li>
+        {% endif %}
+        {% if user.is_staff %}
+        <li>
+            <a href="{% url 'admin:index' %}">Admin</a>
+        </li>
+        {% endif %}
+        {% if perms.todo.add_todo %}
+        <li>
+            <a href="{% url 'todo:add' %}">Add</a>
+        </li>
+        {% endif %}
+    </ul>
+    {% block content %}{% endblock %}
+</body>
+</html>

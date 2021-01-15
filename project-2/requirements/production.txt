@@ -1,0 +1,6 @@
+-r base.txt
+boto3==1.14.49
+django-storages==1.9.1
+dj-database-url==0.5.0
+gunicorn==20.0.4
+psycopg2==2.8.5

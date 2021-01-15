@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit feedback{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container mt-3">
+    <h1>Edit feedback</h1>
+    <form action="{% url 'feedback:edit' feedback.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy}}
+        <br><button class="button" type="submit">Edit</button>
+    </form>
+</div>
+{% endblock %}

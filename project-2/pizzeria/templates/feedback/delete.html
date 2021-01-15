@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete feedback{% endblock %}
+{% block content %}
+
+<h1>Delete feedback</h1>
+<form action="{% url 'feedback:delete' feedback.pk %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+
+    Are you sure you want to delete the following feedback?:<br><br>
+    {{ feedback.text }}?<br><br>
+
+    <br><button class="button" type="submit">Delete</button>
+    <a href="{% url 'pages:home' %}">Cancel</a>
+</form>
+{% endblock %}

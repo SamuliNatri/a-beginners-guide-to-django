@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}{{ view.action }}{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <h1>{{ view.action }}</h1>
+    <form method="post" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="mt-3" type="submit" value="{{ view.action }}">
+    </form>
+</div>
+
+{% endblock %}

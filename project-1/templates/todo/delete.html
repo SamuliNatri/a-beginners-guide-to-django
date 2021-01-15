@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Delete</h1>
+
+<form action="{% url 'todo:delete' todo.pk %}" method="post">
+{% csrf_token %}
+
+{{ form.as_p }}
+
+Are you sure you want to delete the following item?<br><br>
+{{ todo.text }}<br><br>
+<button type="submit">Delete</button>
+<a href="{% url 'todo:index' %}">Cancel</a>
+
+</form>
+
+{% endblock %}

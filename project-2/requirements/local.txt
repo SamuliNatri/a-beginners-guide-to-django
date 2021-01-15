@@ -1,0 +1,4 @@
+-r base.txt
+boto3==1.14.49
+django-storages==1.9.1
+pytest==5.4.3

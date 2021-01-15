@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Todo Index{% endblock %}
+
+{% block content %}
+<h1>Todo</h1>
+
+<ul>
+    {% for todo in todos %}
+    <li>
+        <a href="{{ todo.get_absolute_url }}">
+            {{ todo.text }}
+        </a>
+        {% if perms.todo.change_todo %}
+        <a href="{% url 'todo:edit' pk=todo.pk %}">
+            Edit
+        </a>
+        {% endif %}
+        {% if perms.todo.delete_todo %}
+        <a href="{% url 'todo:delete' pk=todo.pk %}">
+            Delete
+        </a>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+{% if todos.paginator.num_pages > 1 %}
+    {% include '_pagination.html' with items=todos %}
+{% endif %}
+
+{% endblock %}

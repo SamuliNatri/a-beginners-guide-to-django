@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ pizza.name }}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="card my-4">
+        {% if pizza.image %}
+        <img class="card-img-top" src="{{ pizza.image_detail.url }}" alt="{{ pizza.name }}">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ pizza.name }}</h5>
+            <div class="toppings mb-2">
+                {% for topping in pizza.toppings.all %}
+                <button type="button" class="btn btn-light">{{ topping }}</button>
+                {% endfor %}
+            </div>
+            <p class="card-text">{% lorem %}</p>
+            {% if perms.pizzas.delete_pizza %}
+            <a href="{% url 'pizzas:delete' pizza.pk %}">
+                <button type="button" class="btn btn-sm btn-danger">Delete</button>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

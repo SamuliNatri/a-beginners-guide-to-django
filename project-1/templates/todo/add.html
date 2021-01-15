@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Add</h1>
+
+<form action="{% url 'todo:add' %}" method="post">
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<button type="submit">Submit</button>
+
+</form>
+
+{% endblock %}
